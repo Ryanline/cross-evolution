@@ -1,0 +1,26 @@
+{
+  "name": "cross-evolution",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "data:build": "node scripts/generate-showdown-data.mjs",
+    "predev": "npm run data:build",
+    "dev": "vite",
+    "build": "npm run data:build && tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.2.0",
+    "typescript": "~6.0.2",
+    "vite": "^8.0.4"
+  },
+  "dependencies": {
+    "papaparse": "^5.5.3",
+    "pokemon-showdown": "^0.11.10",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  }
+}
