@@ -76,9 +76,13 @@ function getAbilitiesFromSheetRow(row) {
 }
 
 function getMoves(species) {
-  const learnsetData = Dex.species.getLearnsetData(species.id);
-  const moveIds = Object.keys(learnsetData?.learnset ?? {});
-  return moveIds
+  const moveIds = new Set(
+    Dex.species
+      .getFullLearnset(species.id)
+      .flatMap(entry => Object.keys(entry.learnset ?? {}))
+  );
+
+  return Array.from(moveIds)
     .map(id => Dex.moves.get(id))
     .filter(move => move.exists && !move.isNonstandard)
     .map(move => move.name)
