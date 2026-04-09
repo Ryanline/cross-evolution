@@ -5,6 +5,11 @@ import type {EvolutionRecord, GeneratedData, SpeciesRecord, Stats, TeamSlot} fro
 
 const dataset = data as GeneratedData;
 const storageKey = 'cross-evolution-team';
+const baseUrl = import.meta.env.BASE_URL;
+
+function publicAsset(path: string) {
+  return `${baseUrl}${path.replace(/^\/+/, '')}`;
+}
 
 const emptySlot = (): TeamSlot => ({baseId: null, evolutionId: null});
 
@@ -497,7 +502,7 @@ function PanelCard({
       <section className="panel-card">
       {onClear ? (
         <button type="button" className="panel-clear" onClick={onClear} aria-label={`Clear ${title.toLowerCase()}`}>
-          <img src="/x.svg" alt="" className="x-icon" />
+          <img src={publicAsset('x.svg')} alt="" className="x-icon" />
         </button>
       ) : null}
       <header className="panel-card-header">
@@ -609,9 +614,9 @@ export default function App() {
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
-    selectionSoundRef.current = new Audio('/scroll-sound.wav');
+    selectionSoundRef.current = new Audio(publicAsset('scroll-sound.wav'));
     selectionSoundRef.current.preload = 'auto';
-    exportHoverSoundRef.current = new Audio('/hover.mp3');
+    exportHoverSoundRef.current = new Audio(publicAsset('hover.mp3'));
     exportHoverSoundRef.current.preload = 'auto';
     exportHoverSoundRef.current.volume = 0.4;
 
@@ -839,7 +844,7 @@ export default function App() {
               />
               {baseInput ? (
                 <button type="button" className="search-clear" onClick={() => setBaseInput('')} aria-label="Clear base search">
-                  <img src="/x.svg" alt="" className="x-icon" />
+                  <img src={publicAsset('x.svg')} alt="" className="x-icon" />
                 </button>
               ) : null}
             </div>
@@ -869,7 +874,7 @@ export default function App() {
                   >
                     <strong>{filter.kind}</strong>
                     {filter.label}
-                    <img src="/x.svg" alt="" className="x-icon filter-pill-x" />
+                    <img src={publicAsset('x.svg')} alt="" className="x-icon filter-pill-x" />
                   </button>
                 ))}
               </div>
@@ -916,7 +921,7 @@ export default function App() {
                   onClick={() => setEvolutionInput('')}
                   aria-label="Clear evolution search"
                 >
-                  <img src="/x.svg" alt="" className="x-icon" />
+                  <img src={publicAsset('x.svg')} alt="" className="x-icon" />
                 </button>
               ) : null}
             </div>
@@ -946,7 +951,7 @@ export default function App() {
                   >
                     <strong>{filter.kind}</strong>
                     {filter.label}
-                    <img src="/x.svg" alt="" className="x-icon filter-pill-x" />
+                    <img src={publicAsset('x.svg')} alt="" className="x-icon filter-pill-x" />
                   </button>
                 ))}
               </div>
